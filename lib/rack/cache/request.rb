@@ -18,6 +18,10 @@ module Rack::Cache
       @env['REQUEST_METHOD']
     end
 
+    def request_device_type
+      @env['mobvious.device_type']
+    end
+
     # A CacheControl instance based on the request's Cache-Control header.
     def cache_control
       @cache_control ||= CacheControl.new(env['HTTP_CACHE_CONTROL'])

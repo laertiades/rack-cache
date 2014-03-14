@@ -19,6 +19,8 @@ module Rack::Cache
       parts = []
       parts << @request.scheme << "://"
       parts << @request.host
+      parts << ":" << @request.request_device_type || "desktop"
+
 
       if @request.scheme == "https" && @request.port != 443 ||
           @request.scheme == "http" && @request.port != 80
@@ -32,15 +34,16 @@ module Rack::Cache
         parts << "?"
         parts << qs
       end
-
+      
       parts.join
+      
     end
 
   private
     # Build a normalized query string by alphabetizing all keys/values
     # and applying consistent escaping.
     def query_string
-      return nil if @request.query_string.nil?
+      return nil if @request.query_string.blank?
 
       @request.query_string.split(/[&;] */n).
         map { |p| unescape(p).split('=', 2) }.
