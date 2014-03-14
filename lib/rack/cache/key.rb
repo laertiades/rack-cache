@@ -17,17 +17,18 @@ module Rack::Cache
     # Generate a normalized cache key for the request.
     def generate
       parts = []
-      parts << @request.scheme << "://"
-      parts << @request.host
-      parts << ":" << @request.request_device_type || "desktop"
+#      parts << @request.scheme << "://"
+#      parts << @request.host
+#      parts << ":" << @request.request_device_type || "desktop"
+      parts << @request.request_device_type
 
 
-      if @request.scheme == "https" && @request.port != 443 ||
-          @request.scheme == "http" && @request.port != 80
-        parts << ":" << @request.port.to_s
-      end
+#      if @request.scheme == "https" && @request.port != 443 ||
+#          @request.scheme == "http" && @request.port != 80
+#        parts << ":" << @request.port.to_s
+#      end
 
-      parts << @request.script_name
+#      parts << @request.script_name
       parts << @request.path_info
 
       if qs = query_string
