@@ -28,7 +28,6 @@ module Rack::Cache
     def lookup(request, entity_store)
       key = cache_key(request)
       entries = read(key)
-      puts key
 
       # bail out if we have nothing cached
       return nil if entries.empty?
