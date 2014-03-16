@@ -28,7 +28,6 @@ module Rack::Cache
     def lookup(request, entity_store)
       key = cache_key(request)
       entries = read(key)
-puts key
       # bail out if we have nothing cached
       return nil if entries.empty?
 
@@ -138,6 +137,9 @@ puts key
       return true if vary.nil? || vary == ''
       vary.split(/[\s,]+/).all? do |header|
         key = "HTTP_#{header.upcase.tr('-', '_')}"
+puts key
+puts env1[key]
+puts env2[key]
         env1[key] == env2[key]
       end
     end
@@ -321,7 +323,6 @@ puts key
 
       def read(key)
         key = hexdigest(key)
-puts key
         cache.get(key) || []
       end
 
