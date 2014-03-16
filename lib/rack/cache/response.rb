@@ -90,8 +90,6 @@ module Rack::Cache
     # fresh when it includes a Cache-Control/max-age indicator or Expiration
     # header and the calculated age is less than the freshness lifetime.
     def fresh?
-puts date
-puts headers['Date']
       ttl && ttl > 0
     end
 
