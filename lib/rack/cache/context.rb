@@ -58,6 +58,7 @@ module Rack::Cache
       @trace = []
       @default_options.each { |k,v| env[k] ||= v }
       @env = env
+      @env['HTTP_ACCEPT_ENCODING'] = 'deflate'
       @request = Request.new(@env.dup.freeze)
 
       response =

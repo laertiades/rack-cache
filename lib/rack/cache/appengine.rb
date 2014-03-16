@@ -25,7 +25,6 @@ module Rack::Cache::AppEngine
       end
 
       def get(key)
-puts key
         value = MC::Service.get(key)
         Marshal.load(Base64.decode64(value)) if value
       end
