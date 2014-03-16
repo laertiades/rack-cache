@@ -137,8 +137,6 @@ module Rack::Cache
       return true if vary.nil? || vary == ''
       vary.split(/[\s,]+/).all? do |header|
         key = "HTTP_#{header.upcase.tr('-', '_')}"
-puts env1[key]
-puts env2[key]
         env1[key] == env2[key]
       end
     end
