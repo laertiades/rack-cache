@@ -28,7 +28,6 @@ module Rack::Cache
     def lookup(request, entity_store)
       key = cache_key(request)
       entries = read(key)
-puts entries
       # bail out if we have nothing cached
       return nil if entries.empty?
 
@@ -36,6 +35,7 @@ puts entries
       env = request.env
       match = entries.detect{|req,res| requests_match?(res['Vary'], env, req)}
       return nil if match.nil?
+puts match
 
       _, res = match
       if body = entity_store.open(res['X-Content-Digest'])
