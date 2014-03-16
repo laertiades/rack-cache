@@ -321,6 +321,7 @@ module Rack::Cache
 
       def read(key)
         key = hexdigest(key)
+	puts key
         cache.get(key) || []
       end
 
