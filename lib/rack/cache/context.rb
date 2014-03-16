@@ -58,7 +58,15 @@ module Rack::Cache
       @trace = []
       @default_options.each { |k,v| env[k] ||= v }
       @env = env
-      @env['HTTP_ACCEPT_ENCODING'] = 'deflate'
+      
+      if @env['HTTP_ACCEPT_ENCODING'].index('deflate')
+        @env['HTTP_ACCEPT_ENCODING'] = 'deflate'
+      elsif @env['HTTP_ACCEPT_ENCODING'].index('gzip')
+        @env['HTTP_ACCEPT_ENCODING'] = 'gzip'
+      else
+        @env['HTTP_ACCEPT_ENCODING'] = 'identity'
+      end
+      
       @request = Request.new(@env.dup.freeze)
 
       response =
