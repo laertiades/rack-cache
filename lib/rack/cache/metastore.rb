@@ -28,6 +28,7 @@ module Rack::Cache
     def lookup(request, entity_store)
       key = cache_key(request)
       entries = read(key)
+puts key
       # bail out if we have nothing cached
       return nil if entries.empty?
 
@@ -320,6 +321,7 @@ module Rack::Cache
 
       def read(key)
         key = hexdigest(key)
+puts key
         cache.get(key) || []
       end
 
