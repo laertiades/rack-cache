@@ -91,7 +91,7 @@ module Rack::Cache
     # header and the calculated age is less than the freshness lifetime.
     def fresh?
 puts date
-puts now
+puts headers['Date']
       ttl && ttl > 0
     end
 
