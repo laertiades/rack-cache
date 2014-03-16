@@ -35,7 +35,6 @@ module Rack::Cache
       env = request.env
       match = entries.detect{|req,res| requests_match?(res['Vary'], env, req)}
       return nil if match.nil?
-puts match
 
       _, res = match
       if body = entity_store.open(res['X-Content-Digest'])
