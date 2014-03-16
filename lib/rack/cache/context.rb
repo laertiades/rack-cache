@@ -59,6 +59,7 @@ module Rack::Cache
       @default_options.each { |k,v| env[k] ||= v }
       @env = env
       
+      @env['HTTP_ACCEPT_ENCODING'] ||= 'identity'
       if @env['HTTP_ACCEPT_ENCODING'].index('deflate')
         @env['HTTP_ACCEPT_ENCODING'] = 'deflate'
       elsif @env['HTTP_ACCEPT_ENCODING'].index('gzip')
