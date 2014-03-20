@@ -191,7 +191,6 @@ module Rack::Cache
             validate(entry)
           end
         else
-puts @env['HTTP_ACCEPT_ENCODING']
           record :miss
           fetch
         end
