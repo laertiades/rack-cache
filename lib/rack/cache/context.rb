@@ -184,7 +184,8 @@ module Rack::Cache
         if entry
           if fresh_enough?(entry)
             record :fresh
-            entry.headers['Age'] = entry.age.to_s
+#            entry.headers['Age'] = entry.age.to_s
+            entry.headers['Age'] = 0
             entry
           else
             record :stale
